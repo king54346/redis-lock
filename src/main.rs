@@ -25,7 +25,7 @@ async fn main() {
     //     }
     // }
 
-    // let mut client = Client::new_client("12345678", "default", "101.37.89.207", ClientOptions::default());
+    // let mut client = Client::new_client("12345678", "default", "10.0.0.1", ClientOptions::default());
     // // let _:() = c.set("lock", "1").unwrap();
     // // let result:String = c.get("lock").unwrap();
     // // println!("{:?}", result);
@@ -35,7 +35,7 @@ async fn main() {
     //     println!("{:?}", result1);
     // });
 
-    let mut client = Client::new_client("12345678", "default", "101.37.89.207", ClientOptions::default());
+    let mut client = Client::new_client("12345678", "default", "10.0.0.1", ClientOptions::default());
 
     let options1 = LockOptions::default().block(true);
     let options2 = LockOptions::default().block(true);
@@ -74,7 +74,7 @@ mod tests {
 
     #[tokio::test(flavor = "multi_thread", worker_threads = 8)]
     async fn test_watchdog(){
-        let mut client = Client::new_client("12345678", "default", "101.37.89.207", ClientOptions::default());
+        let mut client = Client::new_client("12345678", "default", "10.0.0.1", ClientOptions::default());
 
         let options1 = LockOptions::default().block(true);
         let options2 = LockOptions::default().block(true);
