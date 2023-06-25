@@ -112,7 +112,7 @@ mod tests {
 
     #[tokio::test(flavor = "multi_thread", worker_threads = 8)]
     async fn test1() {
-        let mut red_lock1 = SingleNodeConf::new("default", "12345678", "101.37.89.207");
+        let mut red_lock1 = SingleNodeConf::new("default", "12345678", "10.0.0.1");
         let mut red_lock2 = SingleNodeConf::new("default", "", "localhost");
         let mut red_lock3 = SingleNodeConf::new("default", "", "10.0.0.106");
         let mut lock = RedLock::new("test", vec![red_lock1, red_lock2, red_lock3]);
