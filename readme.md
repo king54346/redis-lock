@@ -38,29 +38,3 @@ redis中可以通过过期时间 expire time 机制来解决死锁问题，插�
 
 在取锁方发现锁已被他人占用时，会创建 watcher 监视器订阅锁的释放事件，随后不再发起主动取锁的尝试；
 当锁被释放后，取锁方能通过之前创建的 watcher 感知到这一变化，然后再重新发起取锁的尝试动作
-
-
-
-const UNLOCK_SCRIPT: &str = r#"
-if redis.call("GET", KEYS[1]) == ARGV[1] then
-  return redis.call("DEL", KEYS[1])
-else
-  return 0
-end
-
-"#;
-const EXTEND_SCRIPT: &str = r#"
-if redis.call("get", KEYS[1]) ~= ARGV[1] then
-  return 0
-else
-  if redis.call("set", KEYS[1], ARGV[1], "PX", ARGV[2]) ~= nil then
-    return 1
-  else
-    return 0
-  end
-end
-"#;
-
-
-
-io-uring + ktls
